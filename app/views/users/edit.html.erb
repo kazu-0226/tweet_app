@@ -1,2 +1,23 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="main users-edit">
+  <div class="container">
+    <div class="form-heading">ユーザー情報の編集</div>
+    <div class="form users-form">
+      <div class="form-body">
+            <% @user.errors.full_messages.each do |message| %>
+                <div class="form-error">
+                    <%= message %>
+                </div>
+            <% end %>
+      <%= form_for(@user, url: update_path(@user.id)) do |f| %>
+        <p>ユーザー名</p>
+        <%= f.text_field :name %>
+        <p>画像</p>
+        <%= f.attachment_field :profile_image %>
+        <p>メールアドレス</p>
+        <%= f.email_field :email %>
+        <%= f.submit "保存" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
