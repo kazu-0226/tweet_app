@@ -1,26 +1,20 @@
 <div class="main users-new">
   <div class="container">
-    <div class="form-heading">新規ユーザー登録</div>
+    <div class="form-heading">ログイン</div>
     <div class="form users-form">
       <div class="form-body">
-        <% @user.errors.full_messages.each do |message| %>
+      <% if @error_message %>
           <div class="form-error">
-            <%= message %>
+            <%= @error_message %>
           </div>
         <% end %>
-      <%= form_for(@user, url: signup_path) do |f| %>
-        <p>ユーザー名</p>
-        <%= f.text_field :name %>
-    
+      <%= form_with url: login_path do |f| %>
         <p>メールアドレス</p>
         <%= f.email_field :email %>
-        
         <p>パスワード</p>
         <%= f.password_field :password %>
-
-        <%= f.submit "新規登録"%>
+        <%= f.submit "ログイン" %>
         <% end %>
-
       </div>
     </div>
   </div>

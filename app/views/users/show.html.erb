@@ -4,7 +4,9 @@
         <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg' , fallback: "no_image.jpg" %>
             <h2><%= @user.name %></h2>
             <p><%= @user.email %></p>
+            <% if @current_user.id == @user.id %>
             <%= link_to "編集", edit_path(@user.id) %>
+            <% end %>
         </div>
      </div>
 </div>
