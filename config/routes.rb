@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   get 'login' => "users#login_form", as: :login_form
   post `login` => "users#login", as: :login
   get 'signup' => "users#new"
@@ -12,11 +13,14 @@ Rails.application.routes.draw do
 
   get 'posts/index' => "posts#index"
   get "posts/new" => "posts#new"
-  get "posts//:id" => "posts#show"
+  get "posts//:id" => "posts#show", as: :posts_show
   post "posts/create" => "posts#create"
   get "posts/:id/edit" => "posts#edit"
   post "posts/:id/update" => "posts#update"
   post "posts/:id/destroy" => "posts#destroy"
+
+  post "likes/:post_id/create" => "likes#create", as: :likes_create
+  post "likes/:post_id/destroy" =>"likes#destroy", as: :likes_destroy
   
   root to: "home#top"
   get "about" => "home#about"
