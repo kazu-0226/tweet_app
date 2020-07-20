@@ -8,5 +8,18 @@
             <%= link_to "編集", edit_path(@user.id) %>
             <% end %>
         </div>
+    <% @user.posts.each do |post| %>
+            <div class="posts-index-item">
+                <div class="post-left">
+                    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg' , fallback: "no_image.jpg" %>
+                </div>
+                <div class="post-right">
+                    <div class="post-user-name">
+                        <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+                    </div>
+                <%= link_to(post.content, "/posts/#{post.id}") %>
+                </div>
+            </div>
+    <% end %>
      </div>
 </div>
