@@ -1,14 +1,20 @@
 <div class="main user-show">
-    <div class= "containe">
+    <div class= "container">
         <div class="user">
-        <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg' , fallback: "no_image.jpg" %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg' , fallback: "no_image.jpg" %>
             <h2><%= @user.name %></h2>
             <p><%= @user.email %></p>
             <% if @current_user.id == @user.id %>
             <%= link_to "編集", edit_path(@user.id) %>
             <% end %>
         </div>
-    <% @user.posts.each do |post| %>
+
+        <ul class="user-tabs">
+        <li class="active"><%= link_to("投稿", "/users/#{@user.id}") %></li>
+        <li><%= link_to("いいね!", "/users/#{@user.id}/likes") %></li>
+        </ul>
+    
+        <% @user.posts.each do |post| %>
             <div class="posts-index-item">
                 <div class="post-left">
                     <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg' , fallback: "no_image.jpg" %>
@@ -20,6 +26,6 @@
                 <%= link_to(post.content, "/posts/#{post.id}") %>
                 </div>
             </div>
-    <% end %>
+        <% end %>
      </div>
 </div>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'users/:id/edit' =>"users#edit", as: :edit
   patch "users/:id" => "users#update", as: :update
   post "logout" => "users#logout", as: :logout
-  
+  get "users/:id/likes" => "users#likes" , as: :user_likes
 
   get 'posts/index' => "posts#index"
   get "posts/new" => "posts#new"
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   post "likes/:post_id/create" => "likes#create", as: :likes_create
   post "likes/:post_id/destroy" =>"likes#destroy", as: :likes_destroy
+  
   
   root to: "home#top"
   get "about" => "home#about"
